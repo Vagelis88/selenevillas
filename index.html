@@ -1,1 +1,79 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Selene Villas</title>
+  <style>
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%}
+    body{background:#0d1b26;overflow:hidden}
 
+    .stage{position:fixed;inset:0;overflow:hidden}
+
+    /* The banner is scaled up until it covers the window in both
+       directions, while keeping its 2048 x 845 ratio. It is pinned to the
+       right/bottom so the ΕΣΠΑ block is never the part that gets cropped. */
+    .banner{position:absolute;right:0;bottom:0;line-height:0;
+      width:max(100vw, calc(100vh * 2048 / 845));
+      width:max(100vw, calc(100dvh * 2048 / 845))}
+    .banner img{display:block;width:100%;height:auto}
+
+    /* Main link: covers the whole image. */
+    .banner .main{position:absolute;inset:0;z-index:1}
+
+    /* ΕΣΠΑ hotspot: bottom-right block, measured from the image
+       (x 1436-2048, y 767-845 of 2048 x 845). */
+    .banner .espa{position:absolute;z-index:2;
+      right:0;bottom:0;width:29.9%;height:9.23%}
+
+    /* Uncomment to see the hotspot while adjusting it:
+    .banner .espa{outline:2px solid red} */
+
+    /* Darkens the top of the photo so the white heading stays readable
+       whatever part of the picture ends up behind it. */
+    .scrim{position:absolute;top:0;left:0;right:0;height:45%;z-index:3;
+      pointer-events:none;
+      background:linear-gradient(to bottom,rgba(0,0,0,.55),rgba(0,0,0,0))}
+
+    /* pointer-events:none lets clicks fall through to the link underneath. */
+    .heading{position:absolute;z-index:4;pointer-events:none;
+      top:clamp(1.5rem,6vh,3.5rem);left:0;right:0;
+      padding:0 1.25rem;text-align:center;color:#fff;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      text-shadow:0 2px 12px rgba(0,0,0,.6)}
+    .heading .name{margin:0;
+      font-size:clamp(1.9rem,5vw,3.6rem);font-weight:600;letter-spacing:.01em}
+    .heading .cue{margin:.7em 0 0;
+      font-size:clamp(.78rem,1.5vw,1.05rem);font-weight:400;
+      letter-spacing:.18em;text-transform:uppercase;opacity:.92}
+
+    /* On portrait phones a full cover would show only a narrow slice of the
+       photo, so there the whole banner is shown, centred. */
+    @media (max-aspect-ratio:1/1){
+      .banner{width:100vw;right:auto;left:0;bottom:auto;top:50%;
+        transform:translateY(-50%)}
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="banner">
+      <img src="banner.jpg" alt="Selene Villas">
+
+      <!-- Click anywhere on the image -->
+      <a class="main" href="https://marilena-panayiotonakoy.holiduhost.com/" aria-label="Selene Villas"></a>
+
+      <!-- Click the ΕΣΠΑ block (bottom right) - opens in a new tab -->
+      <a class="espa" href="https://www.espa.gr/" target="_blank" rel="noopener"
+         aria-label="ΕΣΠΑ 2021-2027"></a>
+    </div>
+
+    <div class="scrim"></div>
+    <div class="heading">
+      <h1 class="name">Selene Villas</h1>
+      <p class="cue">Click anywhere to enter</p>
+    </div>
+  </div>
+</body>
+</html>
